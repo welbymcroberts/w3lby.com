@@ -38,17 +38,17 @@ After finding a frequency to sit at, I self spotted and started calling CQ. I ha
 
 After about 30-40 minutes, the heat unfortuantly was starting to be a problem, with there being an severe weather warning in effect in the area, and due to that I had to go QRT.
 
-# What went well
+## What went well
 I managed to get 13 QSOs (14 including the 2fer) just operating 20 meters.
 
 I didn't melt or otherwise catch on fire when in the heat.
 
-# When went badly
+## When went badly
 The antenna insulator snapping really was a bad start to the activation. Upon further investigation, the insulator shouldn't be required if I operate with just the metal, close to the ground, tripod, which also means there shouldnt be any significant tuning of radials required when operating
 
 My 7300 wasn't consistenly reporting s-units for stations I was copying so my RSTs were a bit "all over the place"
 
-# What could be improved
+## What could be improved
 With the new knowledge of the radials, this should improve the time to deploy, and operating in general.
 
 Logging via paper was again a challenge, paritally as I dont currently have the confidence and skill to be able to quickly copy, but also because my writing is still terrible. Reading the log back at the hotel was a challenge!
