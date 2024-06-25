@@ -33,6 +33,28 @@
         </div>
       {{ end }}
     </header>
+    <section class="prose mt-0 flex max-w-fil dark:prose-invert lg:fleg-row">
+      <div id="stats">
+          {{ $len := len $.Params.parks }}
+            <div id="park"><b>Park(s)</b>:
+              {{ range $i, $park := $.Params.parks }}
+                <a href="https://pota.app/#/park/{{ . }}">{{ . }}</a>{{ if ne (add $i 1) $len }}, {{ end }}
+              {{ end }}
+            </div>
+          {{ $contacts := 0}}
+          <div id="contacts"><b>Contacts</b>:
+            {{ if $.Params.contacts.phone }}{{ $contacts = add $contacts $.Params.contacts.phone }}{{ partial "icon.html" "phone" }}{{ $.Params.contacts.phone }} <b><i>|</i></b> {{ end }}
+            {{ if $.Params.contacts.data }}{{ $contacts = add $contacts $.Params.contacts.data }}{{ partial "icon.html" "data" }}{{ $.Params.contacts.data }} <b><i>|</i></b> {{ end }}
+            {{ if $.Params.contacts.park2park }}{{ partial "icon.html" "pota" }}Park2Park: {{ $.Params.contacts.park2park }} <b><i>|</i></b> {{ end }}
+            Total: {{ $contacts}}
+          </div>
+          <div id="weather">{{ if $.Params.weather }}<b>Weather</b>: {{ $.Params.weather }}{{ end }}</div>
+          <div id="time">{{ if $.Params.time }}<b>Time</b>: {{ $.Params.time }}{{ end }}</div>
+          <div id="activated"><b>Activation {{ if .Params.successful }}Successful{{ else }}Unsuccessful{{ end }}</b></div>
+          <div id="equipment"><b>Equipment</b>: {{ $.Params.radio }} & {{ $.Params.antenna }}</div>
+          {{ if $.Params.photo_credit }}<div id="photo-credit">Photo by {{ if $.Params.photo_url }}<a href="{{ $.Params.photo_url }}">{{ $.Params.photo_credit }}</a>{{ else }}{{ $.Params.photo_credit }}{{ end }}</div>{{ end }}
+      </div>
+    </section>
     <section class="prose mt-0 flex max-w-full flex-col dark:prose-invert lg:flex-row">
       {{ if and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
         <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
@@ -41,34 +63,50 @@
           </div>
         </div>
       {{ end }}
-      <div id="stats">
-        <ul>
-          {{ $len := len $.Params.parks }}
-          <li>
-            <div id="park">Park(s):
-              {{ range $i, $park := $.Params.parks }}
-                <a href="https://pota.app/#/park/{{ . }}">{{ . }}</a>{{ if ne (add $i 1) $len }}, {{ end }}
-              {{ end }}
-            </div>
-          </li>
-          {{ $contacts := 0}}
-          <li><div id="contacts">Contacts:
-            {{ if $.Params.contacts.phone }}{{ $contacts = add $contacts $.Params.contacts.phone }}{{ partial "icon.html" "phone" }}{{ $.Params.contacts.phone }}{{ end }}
-            {{ if $.Params.contacts.data }}{{ $contacts = add $contacts $.Params.contacts.data }}{{ partial "icon.html" "data" }}{{ $.Params.contacts.data }}{{ end }}
-            {{ if $.Params.contacts.park2park }}{{ partial "icon.html" "pota" }}Park2Park: {{ $.Params.contacts.park2park }}{{ end }}
-            Total: {{ $contacts}}
-          </div></li>
-          {{ if $.Params.weather }}<li>Weather: {{ $.Params.weather }}</li>{{ end }}
-          {{ if $.Params.time }}<li>Time: {{ $.Params.time }}</li>{{ end }}
-          <li><div id="activated-successfully">Activation {{ if .Params.successful }}Successful{{ else }}Unsuccessful{{ end }}</div></li>
-          <li><div id="equipment">Equipment: {{ $.Params.radio }} & {{ $.Params.antenna }}</div></li>
-          
-        </ul>
-      
-        
-      </div>
       <div class="min-h-0 min-w-0 max-w-prose grow">
         {{ .Content | emojify }}
+
+
+        {{ $contacts_json := dict }}
+        {{ with .Resources.Get "log.json" }}
+          {{ with .Err }}
+            {{ errorf "%s" . }}
+          {{ else }}
+            {{ $contacts_json = . | transform.Unmarshal }}
+          {{ end }}
+        {{ else }}
+          No log file
+        {{ end }}
+
+        {{ with $contacts_json.contacts }}
+        <h2>Log</h2>
+          <table id="log_table">
+            <thead>
+              <tr>
+                <th style="text-align:center">Date Time (UTC)</th>
+                <th style="text-align:center">Callsign</th>
+                <th style="text-align:center">Mode</th>
+                <th style="text-align:center">Frequency</th>
+                <th style="text-align:center">RST Sent</th>
+                <th style="text-align:center">RST Received</th>
+                <th style="text-align:center">Park</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{ range $contacts_json.contacts }}
+              <tr>
+                <td style="text-align:center">{{ .time }}</td>
+                <td style="text-align:center"><a href="https://qrz.com/db/{{ .call }}">{{.call}}</a><a href="https://pota.app/#/profile/{{ .call }}">{{ partial "icon.html" "pota" }}</a></td>
+                <td style="text-align:center">{{ .mode }}</td>
+                <td style="text-align:center">{{ lang.FormatNumber 3 ( div .frequency 1000000) }} MHz</td>
+                <td style="text-align:center">{{ .rstsent }}</td>
+                <td style="text-align:center">{{ .rstrecv }}</td>
+                <td style="text-align:center"><a href="https://pota.app/#/park/{{ .park }}">{{ .park }}</a></td>
+              </tr>
+              {{ end }}
+            </tbody>
+          </table>
+        {{ end }}
       </div>
     </section>
     <footer class="max-w-prose pt-8 print:hidden">

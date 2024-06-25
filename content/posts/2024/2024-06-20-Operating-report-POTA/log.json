@@ -1,0 +1,130 @@
+{
+    "contacts": [
+        {
+            "time": "2024-06-20 14:24:00",
+            "call": "NC4XL",
+            "frequency": 14325000,
+            "mode": "SSB",
+            "rstsent": "44",
+            "rstrecv": "46",
+            "park": "US-6945"
+        },
+        {
+            "time": "2024-06-20 14:24:00",
+            "call": "NC4XL",
+            "frequency": 14325000,
+            "mode": "SSB",
+            "rstsent": "44",
+            "rstrecv": "46",
+            "park": "US-8313"
+        },
+        {
+            "time": "2024-06-20 14:28:00",
+            "call": "KB1NNH",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "33",
+            "rstrecv": "33",
+            "park": "US-6301"
+        },
+        {
+            "time": "2024-06-20 14:30:00",
+            "call": "K4EM",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "56",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:32:00",
+            "call": "KD9ZCG",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "56",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:33:00",
+            "call": "N9RDX",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "55",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:33:00",
+            "call": "K9ICP",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "57",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:34:00",
+            "call": "KX4MT",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "47",
+            "rstrecv": "57",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:36:00",
+            "call": "KB4LOA",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "59",
+            "rstrecv": "59",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:35:00",
+            "call": "N9DEK",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "47",
+            "rstrecv": "47",
+            "park": "US-10231"
+        },
+        {
+            "time": "2024-06-20 14:36:00",
+            "call": "K0DXI",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "55",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:37:00",
+            "call": "KF0KKC",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "58",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:38:00",
+            "call": "K9GKZ",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "57",
+            "rstrecv": "59",
+            "park": ""
+        },
+        {
+            "time": "2024-06-20 14:38:00",
+            "call": "K3MJC",
+            "frequency": 14310000,
+            "mode": "SSB",
+            "rstsent": "55",
+            "rstrecv": "55",
+            "park": "US-6835"
+        }
+    ]
+}
