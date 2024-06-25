@@ -1,0 +1,10 @@
+languageCode = "en"
+languageName = "English"
+languageDirection = "ltr"
+weight = 1
+
+title = "W3LBY"
+
+[params]
+description = "Random Mutterings"
+dateFormat = "2 January 2006"
