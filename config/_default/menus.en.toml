@@ -24,6 +24,10 @@
   name = "Tags"
   pageRef = "tags"
   weight = 30
+[[main]]
+  name = "Parks"
+  pageRef = "parks"
+  weight = 40
 
 [[main]]
   identifier = "search"

@@ -8,12 +8,12 @@ categories = [
 tags = [
     "US State Parks",
     "Rhode Island",
-    "Successful Activation",
-    "POTA-US-2870"
+    "Successful Activation"
 ]
+parks = [ "US-2870" ]
+
 layout = "operating-notes-pota"
 successful = false
-parks = [ "US-0745" ]
 radio = "Icom IC-7300"
 antenna = "Rez Recon 40"
 weather = "Sunny, High 70 Degrees f (24-26 c)"

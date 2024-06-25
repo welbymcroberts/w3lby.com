@@ -8,13 +8,13 @@ categories = [
 tags = [
     "US National Parks",
     "Massachusetts",
-    "Successful Activation",
-    "POTA-US-0745"
+    "Successful Activation"
 ]
+parks = [ "US-0745" ]
+
 layout = "operating-notes-pota"
 
 successful = true
-parks = [ "US-0745" ]
 radio = "Icom IC-7300"
 antenna = "Rez Recon 40"
 weather = "Sunny, Low 90 Degrees f (32-33 c)"
