@@ -34,3 +34,10 @@ summaryLength = 250
 
 [permalinks]
   posts = "/:year/:month/:day/:slug/" 
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.parser]
+      [markup.goldmark.parser.attribute]
+        block = true
+        title = true

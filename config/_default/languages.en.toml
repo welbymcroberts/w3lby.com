@@ -3,8 +3,7 @@ languageName = "English"
 languageDirection = "ltr"
 weight = 1
 
-title = "W3LBY"
+title = "W3LBY - Notes on Amateur Radio"
 
 [params]
-description = "Random Mutterings"
 dateFormat = "2 January 2006"

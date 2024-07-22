@@ -1,0 +1,25 @@
+@media only screen {
+  .page {
+      width: 100% !important;
+  }
+}
+.max-w-prose {
+  max-width: 95% !important;
+  width: 95% !important;
+}
+.prose {
+  max-width: 95% !important;
+  width: 95% !important;
+}
+
+#awards_pota_hunter td, tr,tbody,thead,th {
+  text-align: center; 
+  vertical-align: middle; 
+}
+
+#awards_pota_hunter img {
+}
+
+.max-w-7xl {
+  max-width: 100% !important;
+}
