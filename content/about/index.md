@@ -17,7 +17,8 @@ showEdit = false
 |-----|-----------|------------|----|---|
 |{{< imgresize W3LBY_POTA_Support_Your_Parks_Activator.png "120x100" "Support Your Parks Activator Summer 2024" >}}|Making Any Contacts as an Activator During a Support Your Parks Event|2024-07-21|||
 |{{< imgresize W3LBY_POTA_Diamond_Hunter.png "120x100" "Diamond Hunter" >}}|Working 50 different units|2024-07-21|20M|Phone|
-|{{< imgresize W3LBY_POTA_Park_to_Park.png "120x100" "Park to Park" >}}|Making Park to Park QSOs|2024-07-21|||
+|{{< imgresize W3LBY_POTA_Park_to_Park_50.png "120x100" "Park to Park" >}}|Making Park to Park QSOs (50)|2024-07-21|||
+|{{< imgresize W3LBY_POTA_Park_to_Park_25.png "120x100" "Park to Park" >}}|Making Park to Park QSOs (25)|2024-07-21|||
 |{{< imgresize W3LBY_POTA_Platinum_Hunter.png "120x100" "Platinum Hunter" >}}|Working 40 different units|2024-07-20|20M|Phone|
 |{{< imgresize W3LBY_POTA_Gold_Hunter.png "120x100" "Gold Hunter" >}}|Working 30 different units|2024-07-20|20M|Phone|
 |{{< imgresize W3LBY_POTA_Silver_Hunter.png "120x100" "Silver Hunter" >}}|Working 20 different units|2024-07-20|20M|Phone|
