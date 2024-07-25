@@ -34,7 +34,7 @@ The drive to the visitors centre was great, really nice to know that this is her
 I didnt realise until later, that there were some park benches near where I parked, and because of this I ended up operating from the trunk of my car, which was not the most comfy!
 ![View from car](view_from_car.jpg)
 
-This time I atempted to use HAMMRS again for logging, but it appears to like to go to the end of the input box if you replace a character or two, which is a bit unintuitive. This ended up with me making a fair few mistakes on the logging side.
+This time I atempted to use HAMRS again for logging, but it appears to like to go to the end of the input box if you replace a character or two, which is a bit unintuitive. This ended up with me making a fair few mistakes on the logging side.
 
 Setting up, took about 10 minutes this time.
 
