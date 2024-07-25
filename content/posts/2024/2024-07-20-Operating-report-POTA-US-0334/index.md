@@ -32,7 +32,7 @@ park2park = 20
 The drive to the visitors centre was great, really nice to know that this is here so close to DC, and central Maryland. As per the POTA directions I checked in with the staff, who directed me towards the far end of the carpark and suggested that would be the best place to activate from. Very freindly staff!
 
 I didnt realise until later, that there were some park benches near where I parked, and because of this I ended up operating from the trunk of my car, which was not the most comfy!
-![View from car](view_from_car.png)
+![View from car](view_from_car.jpg)
 
 This time I atempted to use HAMMRS again for logging, but it appears to like to go to the end of the input box if you replace a character or two, which is a bit unintuitive. This ended up with me making a fair few mistakes on the logging side.
 
