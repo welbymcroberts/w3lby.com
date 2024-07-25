@@ -66,65 +66,103 @@
       <div class="min-h-0 min-w-0 max-w-prose grow">
         {{ .Content | emojify }}
 
-
-        {{ $contacts_json := dict }}
-        {{ with .Resources.Get "log.json" }}
-          {{ with .Err }}
-            {{ errorf "%s" . }}
-          {{ else }}
-            {{ $contacts_json = . | transform.Unmarshal }}
-          {{ end }}
+      {{ $contacts_json := dict }}
+      {{ with .Resources.Get "log.json" }}
+        {{ with .Err }}
+          {{ errorf "%s" . }}
         {{ else }}
-          No log file
+          {{ $contacts_json = . | transform.Unmarshal }}
         {{ end }}
-
-        {{ with $contacts_json.contacts }}
-        <h2>Log</h2>
-          <table id="log_table">
-            <thead>
-              <tr>
-                <th style="text-align:center">Date Time (UTC)</th>
-                <th style="text-align:center">Callsign</th>
-                <th style="text-align:center">Mode</th>
-                <th style="text-align:center">Frequency</th>
-                <th style="text-align:center">RST Sent</th>
-                <th style="text-align:center">RST Received</th>
-                <th style="text-align:center">Park</th>
-              </tr>
-            </thead>
-            <tbody>
-              {{ range $contacts_json.contacts }}
-              <tr>
-                <td style="text-align:center">{{ .time }}</td>
-                <td style="text-align:center"><a href="https://qrz.com/db/{{ .call }}">{{.call}}</a><a href="https://pota.app/#/profile/{{ .call }}">{{ partial "icon.html" "pota" }}</a></td>
-                <td style="text-align:center">{{ .mode }}</td>
-                <td style="text-align:center">{{ lang.FormatNumber 3 ( div .frequency 1000000) }} MHz</td>
-                <td style="text-align:center">{{ .rstsent }}</td>
-                <td style="text-align:center">{{ .rstrecv }}</td>
-                <td style="text-align:center"><a href="https://pota.app/#/park/{{ .park }}">{{ .park }}</a></td>
-              </tr>
-              {{ end }}
-            </tbody>
-          </table>
-        {{ end }}
-      </div>
-    </section>
-    <footer class="max-w-prose pt-8 print:hidden">
-      {{ partial "author.html" . }}
-      {{ partial "sharing-links.html" . }}
-      {{ partial "article-pagination.html" . }}
-      {{ if .Params.showComments | default (.Site.Params.article.showComments | default false) }}
-        {{ if templates.Exists "partials/comments.html" }}
-          <div class="pt-3">
-            <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
-            <div class="pt-3">
-              {{ partial "comments.html" . }}
-            </div>
-          </div>
-        {{ else }}
-          {{ warnf "[CONGO] Comments are enabled for %s but no comments partial exists." .File.Path }}
-        {{ end }}
+      {{ else }}
+        No log file
       {{ end }}
-    </footer>
+      {{ with $contacts_json.contacts }}
+      <h2>QSO Log</h2>
+        <table id="log_table">
+          <thead>
+            <tr>
+              <th style="text-align:center">Date Time (UTC)</th>
+              <th style="text-align:center">Callsign</th>
+              <th style="text-align:center">Mode</th>
+              <th style="text-align:center">Band</th>
+              <th style="text-align:center">RST Sent</th>
+              <th style="text-align:center">RST Received</th>
+              <th style="text-align:center">Park</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{ range $contacts_json.contacts }}
+            <tr>
+              <td style="text-align:center">{{ .time }}</td>
+              <td style="text-align:center"><a href="https://qrz.com/db/{{ .call }}">{{.call}}</a><a href="https://pota.app/#/profile/{{ .call }}">{{ partial "icon.html" "pota" }}</a></td>
+              <td style="text-align:center">{{ .mode }}</td>
+              <td style="text-align:center">{{ .band }}</td>
+              <td style="text-align:center">{{ .rstsent }}</td>
+              <td style="text-align:center">{{ .rstrecv }}</td>
+              <td style="text-align:center"><a href="https://pota.app/#/park/{{ .park }}">{{ .park }}</a></td>
+            </tr>
+            {{ end }}
+          </tbody>
+        </table>
+      {{ end }}
+
+      {{ with .Resources.Get "map.json" }}
+          <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+          <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+          
+          <h2>QSO Map</h2>
+          <style>
+
+            #map{
+              top: 0;
+              bottom: 0;
+              width: 100%;
+            }
+            
+            .leaflet-container {
+              height: 30%;
+              width: 100%;
+              max-width: 100%;
+              max-height: 100%;
+            }
+            
+          </style>
+          <div id="map"></div>
+          <script>
+            let geo;
+            fetch("map.json").then(
+              function(u){ return u.json();}
+            ).then(
+              function(json){
+                geo = json;
+              }
+            ).then(
+              function(){pointLayer.addData(geo).addTo(map)}
+            ).then(
+              function(){map.invalidateSize(true);}
+            )
+            const map = L.map('map').setView([{{ if $.Params.lat }}{{ $.Params.lat }}{{ else }}20{{end}}, {{ if $.Params.long }}{{ $.Params.long }}{{ else }}0{{end}}], {{ if $.Params.zoom }}{{ $.Params.zoom }}{{ else }}3{{end}});
+            const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		          maxZoom: 19,
+		          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	            }).addTo(map);
+            
+            var pointLayer = L.geoJSON(null, {
+              pointToLayer: function(feature,latlng){
+                label = String(feature.properties.callsign);
+                if (feature.properties.park.length > 1) {
+                  label = label + "<br />" + feature.properties.park
+                }
+                return new L.CircleMarker(latlng, {
+                  radius: 4,
+                }).bindTooltip(label, {permanent: true, opacity: 0.7}).openTooltip();
+              }
+            });
+            //pointLayer.addData(geo).addTo(map);
+
+          </script>
+        {{ end }}
+    </div>
+    </section>
   </article>
 {{ end }}
